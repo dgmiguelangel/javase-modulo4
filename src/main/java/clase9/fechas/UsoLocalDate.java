@@ -1,4 +1,4 @@
-package fechas;
+package clase9.fechas;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -31,8 +31,8 @@ public class UsoLocalDate {
 
 		System.out.println("\n---------------CONVERTIR TIPOS");
 		convertToLocalDate();
-
 	}
+	
 
 	private static void fechaActual() {
 		LocalDate fecha = LocalDate.now();
@@ -81,7 +81,8 @@ public class UsoLocalDate {
 
 	public static void convertToLocalDate() {
 		Date fecha = new Date();
-		System.out.println(fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+		LocalDate fecha2 = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		System.out.println(fecha2);
 	}
 
 }

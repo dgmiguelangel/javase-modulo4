@@ -1,9 +1,8 @@
-package fechas;
+package clase9.fechas;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -75,6 +74,7 @@ public class UsoDate {
 
 		if (date1.compareTo(date2) == 0) {
 			System.out.println("IGUALES");
+			
 		} else {
 			System.out.println("DIFERENTES");
 		}

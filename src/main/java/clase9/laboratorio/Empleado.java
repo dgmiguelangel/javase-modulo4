@@ -6,7 +6,7 @@ public abstract class Empleado extends Persona {
 
 	private LocalDate fechaCargo;
 	private double sueldo;
-	
+
 	public Empleado(String nombre, String apellido, Documento documento, LocalDate fechaNacimiento,
 			LocalDate fechaCargo, double sueldo) {
 		super(nombre, apellido, documento, fechaNacimiento);
@@ -16,7 +16,8 @@ public abstract class Empleado extends Persona {
 
 	@Override
 	public String toString() {
-		return "Empleado [fechaCargo=" + fechaCargo + ", sueldo=" + sueldo + ", toString()=" + super.toString() + "]";
+		return "Empleado [fechaCargo=" + UtilidadesFecha.getLocalDateAsString(fechaCargo) + ", sueldo=" + sueldo
+				+ ", toString()=" + super.toString() + "]";
 	}
 
 	public LocalDate getFechaCargo() {
@@ -34,6 +35,5 @@ public abstract class Empleado extends Persona {
 	public void setSueldo(double sueldo) {
 		this.sueldo = sueldo;
 	}
-	
 
 }

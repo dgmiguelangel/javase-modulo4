@@ -1,4 +1,4 @@
-package fechas;
+package clase9.fechas;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -37,8 +37,9 @@ public class UsoCalendar {
 
 		fecha = Calendar.getInstance();
 		fecha.set(anio, mes, dia);
+		
 		System.out.println(
-				fecha.get(Calendar.YEAR) + "/" + fecha.get(Calendar.MONTH) + "/" + fecha.get(Calendar.DAY_OF_MONTH));
+				fecha.get(Calendar.DAY_OF_MONTH) + "/" + fecha.get(Calendar.MONTH) + "/" + fecha.get(Calendar.YEAR));
 
 		sc.close();
 	}

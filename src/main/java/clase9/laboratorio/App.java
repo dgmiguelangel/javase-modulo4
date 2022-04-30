@@ -9,8 +9,8 @@ public class App {
 
 	public static void main(String[] args) {
 
-		Alumno[] alumnos;
-		byte ca = 0, cc;
+		Persona[] personas;
+		byte cp = 0, cc;
 
 		String nombre, apellido;
 
@@ -20,18 +20,27 @@ public class App {
 		LocalDate fechaNacimiento;
 
 		String[] cursos;
+		
+		Persona persona = null;
+		int tipoPersona;
+		
+		LocalDate fechaCargo;
+		double sueldo;
+		String carrera;		
 
-		System.out.println("Ingrese cantidad de alumnos");
-		ca = sc.nextByte();
-		alumnos = new Alumno[ca];		
+		System.out.println("Ingrese cantidad de personas");
+		cp = sc.nextByte();		
+		personas = new Persona[cp];		
 
-		for (byte i = 0; i < alumnos.length; i++) {
+		for (byte i = 0; i < personas.length; i++) {
 			
-			System.out.println("Ingrese el tipo de persona");
+			System.out.println("Ingrese el tipo de persona:");
 			System.out.println("1-Alumno");
 			System.out.println("2-Director");
 			System.out.println("3-Profesor");
 			System.out.println("4-Administrativo");
+			
+			tipoPersona = sc.nextInt();			
 
 			System.out.println("Ingrese el nombre");
 			nombre = sc.nextLine();
@@ -47,38 +56,85 @@ public class App {
 			numeroDocumento = sc.nextInt();
 
 			System.out.println("Ingrese la fecha de nacimiento");
-			fechaNacimiento = ingresarFechaNacimiento();
+			fechaNacimiento = ingresarFecha();
 			
-			switch (key) {
-			case value:
-				
-				break;
-
-			default:
-				break;
+			
+			switch (tipoPersona) {
+				case 1: // alumno					
+					System.out.println("Ingrese la cantidad de cursos");
+					cc = sc.nextByte();
+					cursos = ingresarCursos(cc);
+	
+					persona = new Alumno(nombre, apellido, new Documento(tipoDocumento, numeroDocumento), fechaNacimiento,
+							cursos);
+	
+					break;
+					
+	
+				case 2: // director
+					System.out.println("Ingrese la fecha de inicio del cargo: ");
+					fechaCargo = ingresarFecha();
+	
+					System.out.print("Ingrese el sueldo: ");
+					sueldo = sc.nextDouble();
+	
+					sc.nextLine();
+					System.out.println("Ingrese la carrera: ");
+					carrera = sc.nextLine();
+	
+					persona = new Director(nombre, apellido, new Documento(tipoDocumento, numeroDocumento), fechaNacimiento,
+							fechaCargo, sueldo, carrera);
+	
+					break;
+					
+					
+				case 3: // profesor
+					System.out.println("Ingrese la fecha de inicio del cargo: ");
+					fechaCargo = ingresarFecha();
+	
+					System.out.print("Ingrese el sueldo: ");
+					sueldo = sc.nextDouble();
+	
+					System.out.print("Ingrese la cantidad de cursos: ");
+					cc = sc.nextByte();
+					cursos = ingresarCursos(cc);
+	
+					persona = new Profesor(nombre, apellido, new Documento(tipoDocumento, numeroDocumento), fechaNacimiento,
+							fechaCargo, sueldo, cursos);
+	
+					break;
+					
+					
+				case 4: // administrativo
+					System.out.println("Ingrese la fecha de inicio del cargo: ");
+					fechaCargo = ingresarFecha();
+	
+					System.out.print("Ingrese el sueldo: ");
+					sueldo = sc.nextDouble();
+	
+					persona = new Administrativo(nombre, apellido, new Documento(tipoDocumento, numeroDocumento),
+							fechaNacimiento, fechaCargo, sueldo);
+	
+					break;
+					
 			}
 			
-
-			System.out.println("Ingrese la cantidad de cursos");
-			cc = sc.nextByte();
-			cursos = ingresarCursos(cc);
-
-			alumnos[i] = new Alumno(nombre, apellido, new Documento(tipoDocumento, numeroDocumento), fechaNacimiento,
-					cursos);
+			personas[i] = persona;
 
 		}
 
 		
-		System.out.println("\nDatos de los alumnos");
+		System.out.println("\nDatos de las personas");
 
-		for (int i = 0; i < alumnos.length; i++) {
-			System.out.println(alumnos[i]);
+		for (int i = 0; i < personas.length; i++) {
+			System.out.println(personas[i]);
 		}
 
 		sc.close();
 
 	}
 
+	
 	private static String[] ingresarCursos(byte cc) {
 		String[] cursos = new String[cc];
 
@@ -90,7 +146,8 @@ public class App {
 		return cursos;
 	}
 
-	private static LocalDate ingresarFechaNacimiento() {
+	
+	private static LocalDate ingresarFecha() {
 		int anio, mes, dia;
 
 		System.out.print("Ingrese el año: ");

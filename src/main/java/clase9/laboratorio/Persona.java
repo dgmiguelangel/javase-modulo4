@@ -4,15 +4,15 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public abstract class Persona implements Persistencia {
-	
+
 	private Integer id;
 	private String nombre;
 	private String apellido;
 	private Documento documento;
 	private LocalDate fechaNacimiento;
-	
+
 	private static int contador = 0;
-	
+
 	public Persona() {
 		super();
 	}
@@ -24,24 +24,22 @@ public abstract class Persona implements Persistencia {
 		this.apellido = apellido;
 		this.documento = documento;
 		this.fechaNacimiento = fechaNacimiento;
-	}	
-		
-	
+	}
+
 	@Override
 	public String toString() {
 		return "Persona [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", documento=" + documento
-				+ ", fechaNacimiento=" + fechaNacimiento + "]";
+				+ ", fechaNacimiento=" + UtilidadesFecha.getLocalDateAsString(fechaNacimiento) + "]";
 	}
 
 	public int calcularEdad() {
 		return Period.between(fechaNacimiento, LocalDate.now()).getYears();
 	}
-	
+
 	public boolean esMayorEdad() {
 		return calcularEdad() >= 18 ? true : false;
 	}
 
-	
 	public Integer getId() {
 		return id;
 	}
